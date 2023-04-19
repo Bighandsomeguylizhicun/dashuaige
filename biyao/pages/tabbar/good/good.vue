@@ -38,6 +38,7 @@
 			</view>
 		</view>
 
+<!-- 123 -->
 
 		<lyz-tab-bar pagePath="pages/tabbar/good/good"></lyz-tab-bar>
 	</view>
