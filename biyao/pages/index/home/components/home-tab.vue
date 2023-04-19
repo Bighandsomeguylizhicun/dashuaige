@@ -33,7 +33,7 @@
 	let tabarr = ref([])
 	const data = async () => {
 		let res = await getTypeOneList()
-		console.log(res.data.homeData.oneLevelCategoryList);
+		// console.log(res.data.homeData.oneLevelCategoryList);
 		tabarr.value = res.data.homeData.oneLevelCategoryList
 	}
 	data()
