@@ -1,102 +1,84 @@
 <template>
 	<view class="flow_box">
-		<!-- <button class="btn" type="default" @click="add()">增加数据</button> -->
-		<custom-waterfalls-flow-vue3-2 @tapClick="tapClick" :value="data.list" :column="column" :columnSpace="2" :seat="2"
-			>
-			<!-- #ifdef MP-WEIXIN -->
-			<view class="item" v-for="(item,index) in data.list" :key="index" :slot="`slot${index}`">
-				<view class="title m_b_16 color_333 font_28 text_nowrap_2">{{item.title}}</view>
-				<view class="flex-aic flexr-jsb color_ff0003">
-					<view><text class="font_16">¥</text><text class="font_28">299</text></view>
-					<text class="color_999 font_22">已售99999+</text>
+		<view class="sp-tboxs" v-for="(item,index) in sparr" :key="index">
+			<view class="sp-box" v-for="(v,i) in item.data" :key="i">
+				<view class="sp-img">
+					<img :src="v.image" alt="">
+				</view>
+				<view class="sp-sprice">
+					￥{{v.priceStr}}元
+				</view>
+				<view class="sp-title">
+					{{v.mainTitle}}
+				</view>
+				<view class="sp-hp">
+					{{v.goodCommentAll}}条好评
 				</view>
 			</view>
-			<!-- #endif -->
-			<!-- #ifndef MP-WEIXIN -->
-			<template #card="cardData">
-				<view class="item" >
-					<view class="title m_b_16 color_333 font_28 text_nowrap_2">{{cardData.data.title}}</view>
-					<view class="flex-aic flexr-jsb color_ff0003">
-						<view><text class="font_16">¥</text><text class="font_28">299</text></view>
-						<text class="color_999 font_22">已售99999+</text>
-					</view>
-				</view>
-			</template>
-			<!-- #endif -->
-		</custom-waterfalls-flow-vue3-2>
+		</view>
 	</view>
 </template>
 <script setup>
 	import {
 		ref,
-		reactive,
-		computed
-	} from 'vue';
-	const data = reactive({
-		list: [{
-				image: 'https://via.placeholder.com/200x500.png/ff0000',
-				title: '睡裙女夏季冰丝睡衣少女士性感',
-			},
-			{
-				image: 'https://via.placeholder.com/200x200.png/2878ff',
-				title: '古驰香水',
-			},
-			{
-				image: 'https://via.placeholder.com/200x100.png/FFB6C1',
-				title: '古驰香水',
-			},
-			{
-				image: 'https://via.placeholder.com/200x300.png/9400D3',
-				title: '古驰香水',
-			},
-			{
-				image: 'https://via.placeholder.com/100x240.png/B0E0E6',
-				title: '古驰香水古驰香水古驰香水古驰香水古驰香水',
-			},
-			{
-				image: 'https://via.placeholder.com/140x280.png/7FFFAA',
-				title: '古驰香水',
-			},
-			{
-				image: 'https://via.placeholder.com/40x60.png/EEE8AA',
-				title: '古驰香水',
-			},
-		]
-	})
-	const column = ref(2);
 
-	function add() {
-		const newArr = [{
-				image: 'https://via.placeholder.com/58x100.png/FF7F50',
-				title: '我是标题8',
-			},
-			{
-				image: 'https://via.placeholder.com/59x100.png/C0C0C0',
-				title: '我是标题9',
-			},
-			{
-				image: 'https://via.placeholder.com/60x100.png/FAEBD7',
-				title: '我是标题10',
-			}
-		]
-		data.list = data.list.concat(newArr);
+	} from 'vue';
+	import {
+		getTypeOneList,
+	} from '../../../../api/loginApi.js'
+
+
+
+	let sparr = ref([])
+	const data = async () => {
+		let res = await getTypeOneList()
+		// console.log(res.data.floorData.blockList[1].block);
+		sparr.value = res.data.floorData.blockList[1].block
+		// console.log(sparr.value);
+		// let data = await getHotShop()
 	}
-	const tapClick = (item) => {
-		console.log(item)
-		uni.navigateTo({
-			url: '/pages/goodsDetails/goodsDetails'
-		})
-	}
+	data()
+</script>
+
+<script setup>
+
 </script>
 <style lang="scss" scoped>
 	.flow_box {
-		padding: 0 32rpx;
+		padding: 40rpx;
 	}
-	.item {
-		padding-top: 16rpx;
-		.title {
-			max-height: 72rpx;
-			line-height: 28rpx;
+
+	.sp-tboxs {
+		display: flex;
+		flex-wrap: nowrap;
+		justify-content: space-between;
+		background-color: rgb(244, 244, 244);
+
+		.sp-box {
+			margin-bottom: 5rpx;
+			width: 49.5%;
+			background-color: white;
+
+			.sp-img img {
+				width: 100%;
+				margin-bottom: 10rpx;
+			}
+
+			.sp-sprice {
+				color: goldenrod;
+				margin-bottom: 10rpx;
+			}
+
+			.sp-title {
+				font-size: 14px;
+				margin-bottom: 10rpx;
+			}
+
+			.sp-hp {
+				font-size: 12px;
+				margin-bottom: 10rpx;
+				color: #adadad;
+			}
 		}
 	}
 </style>

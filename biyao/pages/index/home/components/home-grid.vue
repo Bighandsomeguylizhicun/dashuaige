@@ -1,36 +1,58 @@
 <template>
-		<swiper class="swiper" :style="{
-			height: 4 <= 4 ? '170rpx' : '360rpx'
-		}" >
-			<swiper-item class="swiper-item">
-				<lyz-grid @tapGrid="tapGrid" :border="false" :columnNum="4"
-					:columns="[{
-						title:'美妆个护',
-						icon:'http://www.liwanying.top/applate-icon/meizhuang2x.png'
-					},
-					{
-						title:'母婴',
-						icon:'http://www.liwanying.top/applate-icon/muying2x.png'
-					},{
-						title:'内衣',
-						icon:'http://www.liwanying.top/applate-icon/neiyi2x.png'
-					},{
-						title:'女装',
-						icon:'http://www.liwanying.top/applate-icon/nvzhuang2x.png'
-					}]">
-				</lyz-grid>
-			</swiper-item>
-		</swiper>
+	<view class="opers-box">
+		<view class="oper-box" v-for="(item, index) in operationarr" :key="index">
+			<view class="icon-box">
+				<img :src="item.icon" alt="">
+			</view>
+			<view class="text-box">
+				{{item.title}}
+			</view>
+		</view>
+	</view>
 </template>
 
 <script setup>
+	import {
+		ref
+	} from 'vue'
+	import {
+		getTypeOneList
+	} from '../../../../api/loginApi.js'
+
+	let operationarr = ref([]) //品质男装....
+	const data = async () => {
+		let res = await getTypeOneList()
+		operationarr.value = res.data.homeData.operationNavigation
+	}
+	data()
+
+
+
+
 	const tapGrid = () => {
 		uni.showToast({
-			icon:'none',
+			icon: 'none',
 			title: '正在开发中...'
 		})
 	}
 </script>
 
 <style lang="scss" scoped>
+	.opers-box {
+		padding: 40rpx;
+		display: flex;
+		flex-wrap: nowrap;
+		justify-content: space-between;
+	}
+
+	.oper-box {
+		text-align: center;
+		color: #666;
+		font-size: 12px
+	}
+
+	.icon-box img {
+		width: 60rpx;
+		height: 60rpx
+	}
 </style>
