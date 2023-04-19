@@ -13,3 +13,17 @@ export function getTypeOneList() {
 		url: beseUrl,
 	})
 }
+
+// 商品详情
+export function getshopxq(id) {
+	return axios({
+		url: beseUrl+'/oo?id=1301185059010900001',	
+	})
+}
+
+// 分类
+export function getfenlei() {
+	return axios({
+		url: 'http://192.168.212.95:5056/classify',	
+	})
+}

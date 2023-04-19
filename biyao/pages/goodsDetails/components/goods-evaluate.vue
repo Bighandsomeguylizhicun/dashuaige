@@ -12,7 +12,7 @@
 		</view>
 		<evaluate-item></evaluate-item>
 		<evaluate-item></evaluate-item>
-		<evaluate-item></evaluate-item>
+		
 	</view>
 </template>
 
