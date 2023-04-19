@@ -22,6 +22,7 @@
 		let res = await getTypeOneList()
 		banners.value = res.data.homeData.banners
 	}
+	// 
 	data()
 </script>
 

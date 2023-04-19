@@ -29,6 +29,7 @@
 
 
 
+
 	let sparr = ref([])
 	const data = async () => {
 		let res = await getTypeOneList()
