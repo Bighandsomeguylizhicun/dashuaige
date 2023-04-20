@@ -25,7 +25,7 @@ export function getfenlei() {
 	})
 }
 
-// 搜索热词
+// 搜索热词       11111111
 export function gethotwords(v) {
 	return axios({
 		url: 'http://192.168.212.95:5056/search?inputquery=' + v
