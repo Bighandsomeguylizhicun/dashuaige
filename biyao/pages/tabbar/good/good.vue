@@ -51,13 +51,10 @@
 				</view>
 			</view>
 		</view>
-<<<<<<< HEAD
 <!-- 呱呱呱呱呱呱呱呱呱呱呱呱呱呱呱古古怪怪 -->
-=======
 
 <!-- 123 -->
 
->>>>>>> d15f3812ec9ada8188d4faa3b089bfbbe3db5c9b
 		<lyz-tab-bar pagePath="pages/tabbar/good/good"></lyz-tab-bar>
 	</view>
 </template>
