@@ -1,7 +1,10 @@
 <template>
 	<view class="flow_box">
+
+
+		<!-- <navigator url="../../../goodsDetails/goodsDetails"> -->
 		<view class="sp-tboxs" v-for="(item,index) in sparr" :key="index">
-			<view class="sp-box" v-for="(v,i) in item.data" :key="i">
+			<view class="sp-box" v-for="(v,i) in item.data" :key="i" @click="toxq(v.routerParams.suId)">
 				<view class="sp-img">
 					<img :src="v.image" alt="">
 				</view>
@@ -16,6 +19,9 @@
 				</view>
 			</view>
 		</view>
+		<!-- </navigator> -->
+
+
 	</view>
 </template>
 <script setup>
@@ -27,18 +33,22 @@
 		getTypeOneList,
 	} from '../../../../api/loginApi.js'
 
-
-
-
 	let sparr = ref([])
 	const data = async () => {
 		let res = await getTypeOneList()
-		// console.log(res.data.floorData.blockList[1].block);
 		sparr.value = res.data.floorData.blockList[1].block
-		// console.log(sparr.value);
-		// let data = await getHotShop()
+		console.log(sparr.value);
 	}
 	data()
+
+	let toxq = (id) => {
+		uni.navigateTo({
+			url: '/pages/goodsDetails/goodsDetails?id=' + id,
+			fail: (res) => {
+				console.log(res);
+			}
+		});
+	}
 </script>
 
 <script setup>

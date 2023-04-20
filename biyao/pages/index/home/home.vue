@@ -23,21 +23,13 @@
 	// }
 
 
-
-
-
 	import {
 		getTypeOneList
 	} from '../../../api/loginApi.js'
 
 
-
-
-	// let operationarr = ref([]) //品质男装....
 	const data = async () => {
 		let res = await getTypeOneList()
-		// console.log(res.data.homeData.operationNavigation);
-		// operationarr.value = res.data.homeData.operationNavigation
 	}
 	data()
 </script>
