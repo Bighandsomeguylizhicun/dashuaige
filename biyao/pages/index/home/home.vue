@@ -1,3 +1,10 @@
+<!--
+ * @Description: Description
+ * @Author: lizhicun
+ * @Date: 2023-04-18 23:20:25
+ * @LastEditors: lizhicun
+ * @LastEditTime: 2023-04-20 11:26:57
+-->
 <template>
 	<view>
 		<home-search></home-search>
@@ -5,6 +12,7 @@
 		<home-swiper></home-swiper>
 		<home-grid></home-grid>
 		<home-flow></home-flow>
+		<!-- -------------- -->
 	</view>
 </template>
 
