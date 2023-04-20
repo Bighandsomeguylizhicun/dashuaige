@@ -20,7 +20,7 @@
 						<view class="hd">
 							<block v-for="(item,index) in arr" :key="index">
 								<view class="hd_flex {{nav_type == index ? 'hd_flex_on' : ''}}"
-								@click="changeType(index)"	>{{item.categoryName}}</view>
+									@click="changeType(index)">{{item.categoryName}}</view>
 							</block>
 						</view>
 					</view>
@@ -32,7 +32,7 @@
 							<view class="cateList2"></view>
 						</view>
 
-						<view class="c_box" v-for="(items,indexs) in itemlist" :key="indexs">
+						<view class="c_box" v-for="(items,indexs) in itemlist" :key="indexs" >
 							<view class="more">
 								<view class="moreleft">{{items.categoryName}}</view>
 								<view class="moreright">更多</view>
@@ -72,17 +72,16 @@
 		let res = await getfenlei()
 		console.log(res.data.listData);
 		arr.value = res.data.listData
-		itemlist.value =res.data.listData[index.value].subCategoryList
+		itemlist.value = res.data.listData[index.value].subCategoryList
 		console.log(itemlist.value);
 		nav.value = arr.value[index.value].categoryName
 	}
 	data()
-	let changeType = (e)=>{
+	let changeType = (e) => {
 		console.log(e);
 		index.value = e
 		data()
 	}
-	
 </script>
 
 <style lang="scss" scoped>
@@ -119,8 +118,8 @@
 	}
 
 	.kungbox {
-		width: 100vw;
-		padding: 0 10Px;
+		width: 100%;
+		padding: 0 10rPx;
 		display: flex;
 		justify-content: space-between;
 	}
@@ -135,11 +134,8 @@
 	}
 
 	.Kleft {
-		width: 7.375rem;
+		width: 30%;
 		height: 100vh;
-		// overflow-y: hidden;
-		// nnnnnnnnnnnnnnnnnnnnnnnnn
-		flex: auto;
 		overflow: auto;
 	}
 
@@ -165,17 +161,16 @@
 		font-size: 30rpx;
 		color: black;
 		position: relative;
-		background-color: #ffffff;
 
 	}
 
 	.hd_flex_on::after {
+
 		position: absolute;
 		top: 50%;
 		left: 0;
 		width: 4px;
 		height: 16px;
-		background-color: #ee0a24;
 		transform: translateY(-50%);
 		content: "";
 	}
@@ -183,7 +178,7 @@
 
 
 	.Kright {
-		width: 600rpx;
+		width: 70%;
 		box-sizing: border-box;
 		overflow-y: auto;
 
@@ -360,21 +355,23 @@
 
 	.more {
 		width: 430rpx;
-		height: 30px;
+		height: 60rpx;
+		line-height: 60rpx;
 		font-size: 17px;
+		font-weight: 600;
 		display: flex;
 		justify-content: space-between;
 	}
 
 	.clear {
-		width: 350px;
+		width: 100%;
 		display: flex;
-		justify-content: space-between;
+		float: left;
 		flex-wrap: wrap;
 	}
 
 	.clearitem {
-		width: 130rpx;
+		width: 33.33%;
 	}
 
 	.clearimg {
