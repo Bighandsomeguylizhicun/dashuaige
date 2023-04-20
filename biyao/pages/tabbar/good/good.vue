@@ -19,8 +19,8 @@
 					<view class="Kleft">
 						<view class="hd">
 							<block v-for="(item,index) in arr" :key="index">
-								<view class="hd_flex {{nav_type == index ? 'hd_flex_on' : ''}}" catchtap="changeType"
-									data-index="{{index}}">{{item.categoryName}}</view>
+								<view class="hd_flex {{nav_type == index ? 'hd_flex_on' : ''}}"
+								@click="changeType(index)"	>{{item.categoryName}}</view>
 							</block>
 						</view>
 					</view>
@@ -28,17 +28,30 @@
 					<view class="Kright">
 						<view class="fltitlebox">
 							<view class="cateList1"></view>
-							<view class="cateList-name">男装</view>
+							<view class="cateList-name">{{nav}}</view>
 							<view class="cateList2"></view>
 						</view>
-						fffffffffffffffffffffff
-					</view>
-				</view>
 
+						<view class="c_box" v-for="(items,indexs) in itemlist" :key="indexs">
+							<view class="more">
+								<view class="moreleft">{{items.categoryName}}</view>
+								<view class="moreright">更多</view>
+							</view>
+							<view class="clear">
+								<view class="clearitem" v-for="(a,b) in items.subCategoryList" :key="b">
+									<image class="clearimg" :src=a.imageUrl mode=""></image>
+									<view class="clearp">{{a.categoryName}}</view>
+								</view>
+							</view>
+						</view>
+
+
+					</view>
+
+				</view>
 			</view>
 		</view>
-
-
+<!-- 呱呱呱呱呱呱呱呱呱呱呱呱呱呱呱古古怪怪 -->
 		<lyz-tab-bar pagePath="pages/tabbar/good/good"></lyz-tab-bar>
 	</view>
 </template>
@@ -51,12 +64,24 @@
 		ref
 	} from "vue"
 	let arr = ref([])
+	let itemlist = ref([])
+	let index = ref(0)
+	let nav = ref()
 	const data = async () => {
 		let res = await getfenlei()
 		console.log(res.data.listData);
 		arr.value = res.data.listData
+		itemlist.value =res.data.listData[index.value].subCategoryList
+		console.log(itemlist.value);
+		nav.value = arr.value[index.value].categoryName
 	}
 	data()
+	let changeType = (e)=>{
+		console.log(e);
+		index.value = e
+		data()
+	}
+	
 </script>
 
 <style lang="scss" scoped>
@@ -85,7 +110,6 @@
 		width: 686rpx;
 		height: 100vh;
 		margin-left: 30rpx;
-		border: 1px solid red;
 		box-sizing: border-box;
 		// overflow-y: hidden;
 		// nnnnnnnnnnnnnnnnnnnnnnnnnnnnn
@@ -94,7 +118,7 @@
 	}
 
 	.kungbox {
-		width: 100%;
+		width: 100vw;
 		padding: 0 10Px;
 		display: flex;
 		justify-content: space-between;
@@ -161,7 +185,7 @@
 		width: 600rpx;
 		box-sizing: border-box;
 		overflow-y: auto;
-		border: 1px solid red;
+
 	}
 
 	.desttop {
@@ -319,16 +343,45 @@
 		background-size: 100% 100%;
 		margin-top: 20px;
 	}
+
 	.cateList-name::after {
-	  content: '';
-	  position: absolute;
-	  height: 0.02rem;
-	  top: 50%;
-	  margin-top: -0.01rem;
-	  margin-left: 0.44rem;
-	  width: 0.48rem;
-	  background-image: -webkit-linear-gradient(right, #999 0%, rgba(153,153,153,0) 100%);
-	  background-image: linear-gradient(-90deg, #999 0%, rgba(153,153,153,0) 100%);
-	  background-image: -webkit-linear-gradient(-90deg, #999 0%, rgba(153,153,153,0) 100%);
+		content: '';
+		position: absolute;
+		height: 0.02rem;
+		top: 50%;
+		margin-top: -0.01rem;
+		margin-left: 0.44rem;
+		width: 0.48rem;
+		background-image: -webkit-linear-gradient(right, #999 0%, rgba(153, 153, 153, 0) 100%);
+		background-image: linear-gradient(-90deg, #999 0%, rgba(153, 153, 153, 0) 100%);
+		background-image: -webkit-linear-gradient(-90deg, #999 0%, rgba(153, 153, 153, 0) 100%);
+	}
+
+	.more {
+		width: 430rpx;
+		height: 30px;
+		font-size: 17px;
+		display: flex;
+		justify-content: space-between;
+	}
+
+	.clear {
+		width: 350px;
+		display: flex;
+		justify-content: space-between;
+		flex-wrap: wrap;
+	}
+
+	.clearitem {
+		width: 130rpx;
+	}
+
+	.clearimg {
+		width: 130rpx;
+		height: 130rpx;
+	}
+
+	.clearp {
+		text-align: center;
 	}
 </style>
