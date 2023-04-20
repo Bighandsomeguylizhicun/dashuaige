@@ -11,17 +11,10 @@ export function getTypeOneList() {
 		url: beseUrl,
 	})
 }
-
-// // 热销排行
-// export function getHotShop() {
-// 	return axios({
-// 		url: beseUrl + "/rmsp",
-// 	})
-// }
 // 商品详情
 export function getshopxq(id) {
 	return axios({
-		url: beseUrl + '/oo?id=1301185059010900001',
+		url: beseUrl + '/oo?id=' + id,
 	})
 }
 
@@ -29,5 +22,12 @@ export function getshopxq(id) {
 export function getfenlei() {
 	return axios({
 		url: 'http://192.168.212.95:5056/classify',
+	})
+}
+
+// 搜索热词
+export function gethotwords(v) {
+	return axios({
+		url: 'http://192.168.212.95:5056/search?inputquery=' + v
 	})
 }

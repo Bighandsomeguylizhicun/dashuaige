@@ -1,6 +1,6 @@
 <template>
 	<view class="opers-box">
-		<view class="oper-box" v-for="(item, index) in operationarr" :key="index">
+		<view class="oper-box" v-for="(item, index) in operationarr" :key="index" @click="tofl(item.ext.categoryID)">
 			<view class="icon-box">
 				<img :src="item.icon" alt="">
 			</view>
@@ -23,9 +23,19 @@
 	const data = async () => {
 		let res = await getTypeOneList()
 		operationarr.value = res.data.homeData.operationNavigation
+		console.log(operationarr.value, '66666666666666666666');
 	}
 	data()
 
+	const tofl = (id) => {
+		console.log(id);
+		uni.navigateTo({
+			url: '/pages/collect/collect?id=' + id,
+			fail: (res) => {
+				console.log(res);
+			}
+		});
+	}
 
 
 

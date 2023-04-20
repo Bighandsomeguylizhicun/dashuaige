@@ -6,28 +6,28 @@
 				<view class="price_color">
 					<text class="font_36">¥</text><text class="font_64 m_r_24">{{arr.togGroupPriceStr}}</text>
 				</view>
-			
+
 			</view>
 			<view class="m_b_8 color_333 font_32 font_bold">{{arr.longProductName}}</view>
 			<view class="m_b_16 color_999 font_28">销量99999+</view>
-		
+
 		</view>
 		<view class="bgc_fff font_28 color_333 m_b_24">
 			<view @tap="showSku" class="goods_item_box boxs_bb flex-aic flexr-jsb">
-				<text class="goods_item_cla color_999">选择</text><text class="flex-fitem">柔情黄/50ml</text>
+				<text class="goods_item_cla color_999">选择</text><text class="flex-fitem">xxxxxx</text>
 				<image class="goods_item_icon" src="http://www.liwanying.top/applate-icon/gengduo.png" mode=""></image>
 			</view>
 			<view class="goods_item_box boxs_bb">
-				<text class="goods_item_cla color_999">类型</text><text>实物</text>
+				<text class="goods_item_cla color_999">类型</text><text>xxxxx</text>
 			</view>
 			<view class="goods_item_box boxs_bb">
-				<text class="goods_item_cla color_999">发货</text><text>浙江金华</text>
+				<text class="goods_item_cla color_999">发货</text><text>xxxxx</text>
 			</view>
 			<view class="goods_item_box boxs_bb">
-				<text class="goods_item_cla color_999">运费</text><text>免运费<text class="color_eee">｜</text>48小时内发货</text>
+				<text class="goods_item_cla color_999">运费</text><text>xxxxx<text class="color_eee">｜</text>xxxxxxx</text>
 			</view>
 		</view>
-		
+
 		<view class="bb_title font_28 color_999 flex-aic flexr-jsc">
 			<view class="bgc_ddd"></view><text>宝贝详情</text>
 		</view>
@@ -45,20 +45,35 @@
 		getshopxq
 	} from '../../api/loginApi.js'
 	import {
-		ref
+		ref,
+		watchEffect
 	} from "vue";
+	import {
+		onLoad
+	} from "@dcloudio/uni-app"
+
+
+	let id = ref()
+	onLoad((option) => {
+		id.value = option.id
+		// console.log(id.value, '1111111111111111111');
+	})
+
 
 	// 
 	let arr = ref([])
 	let imgarr = ref()
 	const data = async () => {
-		let res = await getshopxq()
-		console.log(res.data);
+		let res = await getshopxq(id.value)
 		arr.value = res.data
-		imgarr.value = (res.data.productButtomDetail).replace(/<img/g, '<img style="max-width:100%;height:auto;display:block;margin:40rpx 0;"')
+		imgarr.value = (res.data.productButtomDetail).replace(/<img/g,
+			'<img style="max-width:100%;height:auto;display:block;margin:40rpx 0;"')
 
 	}
-	data()
+
+	watchEffect(() => {
+		data()
+	})
 
 
 
@@ -69,7 +84,6 @@
 		goodsSkuRef.value.showSku()
 	}
 	const goodsAdd = () => {
-		console.log('goodsAdd')
 		uni.showToast({
 			title: '添加成功，在购物车等亲!',
 			mask: true,
@@ -85,6 +99,8 @@
 		goodsSkuRef.value.showSku()
 	}
 </script>
+
+
 
 <style lang="scss">
 	page {

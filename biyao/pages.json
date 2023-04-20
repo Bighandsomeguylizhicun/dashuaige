@@ -156,7 +156,7 @@
 		}, {
 			"path": "pages/collect/collect",
 			"style": {
-				"navigationBarTitleText": "我的收藏",
+				"navigationBarTitleText": "",
 				"enablePullDownRefresh": false,
 				"app-plus": {
 					"bounce": "none"
@@ -168,7 +168,7 @@
             "path" : "pages/exchange/exchange",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "我的兑换",
+                "navigationBarTitleText": "",
                 "enablePullDownRefresh": false
             }
             
