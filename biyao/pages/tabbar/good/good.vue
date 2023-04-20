@@ -51,9 +51,7 @@
 				</view>
 			</view>
 		</view>
-<!-- 呱呱呱呱呱呱呱呱呱呱呱呱呱呱呱古古怪怪 -->
 
-<!-- 123 -->
 
 		<lyz-tab-bar pagePath="pages/tabbar/good/good"></lyz-tab-bar>
 	</view>
